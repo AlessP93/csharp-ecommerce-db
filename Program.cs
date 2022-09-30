@@ -11,10 +11,10 @@ using (EcommerceContext db = new EcommerceContext())
     Product newProduct = new Product { Name = "Iphone" , Description = "Pro 13 Pro Max 512gb", Price = "1489 €"};
     db.Add(newProduct);
 
-    Customer newCustomer = new Customer { Name = "William Scott", Surname = "Pro 13 Pro Max 512gb", Email = "WillScott@gmail.it"};
+    Customer newCustomer = new Customer { Name = "William", Surname = " Scott", Email = "WillScott@gmail.it"};
     db.Add(newCustomer);
 
-
+    
     // CRUD - READ
     Console.WriteLine("Recupero lista di Products");
     List<Product> Products = db.Products.OrderBy(Product => Product.Name).ToList<Product>();
@@ -23,9 +23,10 @@ using (EcommerceContext db = new EcommerceContext())
     List<Customer> Customers = db.Customers.OrderBy(Customer => Customer.Name).ToList<Customer>();
 
     //CRUD UPDATE
-    newProduct.Name = "Samsung";
+    //newProduct.Name = "Samsung";
+    //db.SaveChanges();
+    db.Remove(Customers);
     db.SaveChanges();
-
 }
 public class EcommerceContext : DbContext 
 {
