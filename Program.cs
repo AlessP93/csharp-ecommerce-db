@@ -14,18 +14,28 @@ using (EcommerceContext db = new EcommerceContext())
     Customer newCustomer = new Customer { Name = "William", Surname = " Scott", Email = "WillScott@gmail.it"};
     db.Add(newCustomer);
 
-    
-    // CRUD - READ
+
+    //CRUD - READ
     Console.WriteLine("Recupero lista di Products");
     List<Product> Products = db.Products.OrderBy(Product => Product.Name).ToList<Product>();
+
+    foreach (Product product in Products)
+    {
+        Console.WriteLine("- " + product.Name + " " + product.Description + " - " + product.Price + "\n");
+    }
 
     Console.WriteLine("Recupero lista di Customers");
     List<Customer> Customers = db.Customers.OrderBy(Customer => Customer.Name).ToList<Customer>();
 
+    foreach (Customer customer in Customers)
+    {
+        Console.WriteLine("- " + customer.Name + " " + customer.Surname + " - " + customer.Email + "\n");
+    }
+
     //CRUD UPDATE
     //newProduct.Name = "Samsung";
     //db.SaveChanges();
-    db.Remove(Customers);
+    db.removeProduct(newProduct);
     db.SaveChanges();
 }
 public class EcommerceContext : DbContext 
@@ -39,5 +49,14 @@ public class EcommerceContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=db-ecommerce;Integrated Security=True;Pooling=False");
+    }
+
+    public void addProduct(Product item)
+    {
+        Product.Add(item);
+    }
+    public void removeProduct(Product item)
+    {
+        Product.Remove(item);
     }
 }

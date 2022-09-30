@@ -8,4 +8,13 @@
     //inietto la lista degli ordini ( Molti a Molti )
     public List<Order> Orders { get; set; }
 
+    internal static void Add(Product item)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static void Remove(Product item)
+    {
+        throw new NotImplementedException();
+    }
 }
